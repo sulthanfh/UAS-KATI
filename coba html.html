@@ -1,0 +1,169 @@
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: hsl(0, 90%, 34%);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.menu {
+  color: white;
+  background-color: hsl(59, 91%, 46%);
+  text-align: center;
+  padding: 10px 0;
+}
+
+.menu a {
+  color: hsl(0, 40%, 4%);
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu a:hover {
+  background-color: hsl(0, 37%, 93%);
+}
+
+.row {
+  display: flex;
+}
+
+.left {
+  background-color: hwb(39 4% 13%);
+  width: 20%;
+  text-align: center;
+  padding: 200px 0;
+}
+
+.content {
+  background-color: rgb(244, 240, 240);
+  width: 80%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CUPANG KINGS</h1>
+</div>
+
+<div class="menu">
+  <a onclick="showSection('Home')">Home</a>
+  <a onclick="showSection('Buy')">Buy</a>
+  <a onclick="showSection('Transaksi')">Transaksi</a>
+  <a onclick="showSection('Tentang')">Tentang Kami</a>
+</div>
+
+<div class="row">
+  <div class="left">
+    <h2>WELCOME TO CUPANG KINGS</h2>
+  </div>
+
+  <section id="Home" class="content">
+    <h2>Selamat Datang di Toko Ikan CUPANG KINGS</h2>
+    <p>Kami memiliki beragam ikan cupang untuk anda beli</p>
+    <img src="green.jpg.jpeg" alt="frame1" width="250px" height="200px" style="margin: 10px;">
+    <img src="cupang bodas1.jpg.jpeg" alt="frame2" width="250px" height="200px" style="margin: 10px;">
+    <img src="super red.jpg.jpeg" alt="frame3" width="250px" height="200px" style="margin: 10px;">
+    <img src="green1.jpg.jpeg" alt="frame4" width="250px" height="200px" style="margin: 10px;">
+    <img src="super red1.jpg.jpeg" alt="frame5" width="250px" height="200px" style="margin: 10px;">
+    <marquee behavior="direction">CUPANG KINGS!!! CUPANG KINGS!!! CUPANG KINGS!!!</marquee>
+  </section>
+
+  <section id="Buy" class="content hidden">
+    <h2>Input Pembelian</h2>
+    <form id="transaksiForm">
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+        <label for="alamat">Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat" required><br><br>
+        <label for="tipe">Tipe ikan cupang:</label><br>
+        <select id="tipeSelect" name="tipe" required>
+            <option value="Cupang Red Female">Cupang Red Female</option>
+            <option value="Cupang Red Male">Cupang Red Male</option>
+            <option value="Cupang Green Female">Cupang Green Female</option>
+            <option value="Cupang Green Male">Cupang Green Male</option>
+            <option value="Cupang White Moon">Cupang White Moon</option>
+        </select><br><br>
+        <label for="jumlah">Jumlah:</label><br>
+        <input type="number" id="jumlah" name="jumlah" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+  </section>
+
+  <section id="Transaksi" class="content hidden">
+    <h2>Transaksi Pembelian</h2>
+    <div id="transaksiList"></div>
+  </section>
+
+  <section id="Tentang" class="content hidden">
+    <h2>Tentang Kami</h2>
+    <p align="center" id="about"><font color="#000000"><b>CONTACT</b></font></p>
+    <p align="center"><font color="#000000">KONTAK: 081111-0066-9999 <br> EMAIL : CUPANGKINGS@mail.COM</font></p>   
+    <p>Nama: Sulthan Firman Hafizh.</p>
+    <p>Kelas: IS-3</p>
+    <img src="sulthan.jpg.jpeg" alt="Sulthan" width="350px" height="500px">
+  </section>
+</div>
+<script>
+function showSection(sectionId) {
+  const sections = document.querySelectorAll('.content');
+  sections.forEach(section => {
+    if (section.id === sectionId) {
+      section.classList.remove('hidden');
+    } else {
+      section.classList.add('hidden');
+    }
+  });
+}
+
+const form = document.getElementById('transaksiForm');
+const transaksiList = document.getElementById('transaksiList');
+
+const hargaIkanCupang = {
+  'Cupang Red Female': 20000,
+  'Cupang Red Male': 25000,
+  'Cupang Green Female': 15000,
+  'Cupang Green Male': 18000,
+  'Cupang White Moon': 30000
+};
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const nama = document.getElementById('nama').value;
+  const alamat = document.getElementById('alamat').value;
+  const tipe = document.getElementById('tipeSelect').value;
+  const jumlah = document.getElementById('jumlah').value;
+  
+  const harga = hargaIkanCupang[tipe];
+  const totalHarga = harga * jumlah;
+  
+  const transaksiItem = document.createElement('div');
+  transaksiItem.innerHTML = `<p>Nama: ${nama}</p>
+                             <p>Alamat: ${alamat}</p>
+                             <p>Tipe: ${tipe}</p>
+                             <p>Jumlah: ${jumlah}</p>
+                             <p>Harga per unit: Rp${harga}</p>
+                             <p>Total Harga: Rp${totalHarga}</p>
+                             <hr>`;
+  
+  transaksiList.appendChild(transaksiItem);
+  
+  form.reset();
+});
+</script>
+
+</body>
+</html>

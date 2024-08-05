@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: hwb(0 4% 31%);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.menu {
+  color: white;
+  background-color: #808080;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.menu a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu a:hover {
+  background-color: lightgray;
+}
+
+.row {
+  display: flex;
+}
+
+.left {
+  background-color: lightgray;
+  width: 20%;
+  text-align: center;
+  padding: 200px 0;
+}
+
+.content {
+  background-color: rgb(244, 240, 240);
+  width: 80%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.hidden {
+  display: none;
+}
